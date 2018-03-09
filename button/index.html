@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    #box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+      font-family: 'Arial black';
+      font-size: 16px;
+      background: #676465;
+    }
+
+    span {
+      border: 3px solid;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+      border-color: #e6e9eb;
+      color: #d4d4d6;
+      border-radius: 30px;
+      padding: 5px 15px;
+      font-size: 1.3em;
+      position: relative;
+      display: flex;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    #box.light {
+      background: #d4d4d6;
+    }
+
+    .dark-btn {
+      border-color: #524f53;
+      color: #4d4a4e;
+    }
+
+    #circle.dark-bg {
+      background: #676465;
+    }
+
+    #circle.anima {
+      animation: diffusion 1s 1;
+    }
+
+
+    #circle {
+      position: absolute;
+      background: #d4d4d6;
+    }
+
+    @keyframes diffusion {
+      from {
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+      }
+      to {
+        width: 100vw;
+        height: 100vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box" class="light">
+    <div id="circle" class="dark-bg"></div>
+    <span class="dark-btn">click here ...</span>
+  </div>
+
+  <script>
+    let box = document.querySelector('#box'),
+      cir = document.querySelector('#circle'),
+      btn = document.querySelector('span');
+
+    btn.addEventListener('click', function () {
+      cir.classList.add('anima');
+      btn.classList.toggle('dark-btn');
+      setTimeout(function () {
+        cir.classList.remove('anima');
+        box.classList.toggle('light');
+        cir.classList.toggle('dark-bg');
+      }, 1000);
+    }, false);
+
+
+
+
+  </script>
+</body>
+
+</html>
