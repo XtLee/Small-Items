@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #000;
+    font-family: 'Roboto',Arial;
+  }
+
+  div {
+    height: 100vh;
+    border: 1px solid white;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  span {
+    min-width: 15px;
+    display: inline-block;
+    font-size: 40px;
+    line-height: 100vh;
+    opacity: 0;
+    transition: all ease .9s;
+  } 
+</style>  
+</head>
+<body>
+<div>
+  Hello World!!!
+</div>
+<script>
+  function $(el) {
+    return document.querySelector(el);
+  }
+  function $$(el) {
+    return document.getElementsByTagName(el);
+  }
+
+  function r(min=0, max=0) {
+    return Math.floor(min + Math.random()*(max - min));
+  }
+
+  /*--------------------------------------*/
+
+  const $div = $('div');
+  const $span = $$('span');
+  const text = $div.innerText.trim().split('');
+  let frame = 0;
+  let str = '';
+
+  for(let i=0;i<text.length;i++){
+    str+=`<span>${text[i]}</span>`;
+  };
+
+  $div.innerHTML = str;
+
+  setInterval(()=> {
+    if(frame%5===0) {
+      for(let a=0;a<$span.length;a++) {
+        $span[a].style.opacity = 0;
+        $span[a].style.color = `#${r(3,9)}${r(3,9)}${r(3,9)}${r(3,9)}${r(3,9)}${r(3,9)}`;
+        $span[a].style.transform = `translate3d(${r(0,-150)}px, ${r(0,-150)}px, 0px) rotate(${r(0,360)}deg)`;
+      };
+    }else if(frame%5===4) {
+      for(let a=0;a<$span.length;a++) {
+        $span[a].style.opacity = 0;
+        $span[a].style.transform = `translate3d(${r(0,150)}px, ${r(0,150)}px, 0px) rotate(${r(0,360)}deg)`;
+      };
+    }else {
+       for(let a=0;a<$span.length;a++) {
+        $span[a].style.opacity = 1;
+        $span[a].style.transform = ``;
+      };
+    }
+   frame++
+  }, 1000);  
+</script>
+</body>
+</html>
